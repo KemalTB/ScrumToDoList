@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Comfortaa", sans-serif;
+  text-decoration: none;
+  /* scroll-behavior: smooth; */
+}
+
+:root {
+  --bg-color: #212a34;
+  --second-bg-color: #626e80;
+  --text-color: #51f0f7;
+  --main-color: #f38647;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  background-color: var(--second-bg-color);
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(5, 234, 241, 1);
+  border-radius: 0.5%;
+  overflow: auto;
+}
+
+h1 {
+  text-align: center;
+  color: antiquewhite;
+}
+
+.input-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.input-container input[type="owner"],
+.input-container input[type="text"],
+.input-container input[type="date"],
+.input-container button {
+  padding: 10px;
+  margin: 5px;
+  border: 3px solid var(--text-color);
+  height: 40px; /* Sabit yükseklik */
+  flex: 1 1 auto; /* Esnek genişlik */
+}
+
+.board {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  overflow: auto; /* Hem yatay hem dikey kaydırma */
+}
+
+.column {
+  flex: 1 1 24%;
+  background-color: rgb(247, 244, 244);
+  padding: 10px;
+  border: 3px solid var(--text-color);
+  margin: 5px;
+  box-sizing: border-box;
+  border-radius: 0.5%;
+}
+
+.column h2 {
+  text-align: center;
+  color: antiquewhite;
+  padding: 10px;
+  border-radius: 0.5%;
+}
+
+#todo-column h2, #todo-list .task {
+  background-color: #d12828;
+  color: #fff;
+}
+
+#in-progress-column h2, #in-progress-list .task {
+  background-color: #fa8f15;
+  color: #fff;
+}
+
+#check-column h2, #check-list .task {
+  background-color: #1d39b6;
+  color: #fff;
+}
+
+#done-column h2, #done-list .task {
+  background-color: #17a017;
+  color: #fff;
+}
+
+.task-list {
+  min-height: 200px;
+}
+
+.task {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.task span {
+  cursor: pointer;
+}
+
+.task span strong {
+  font-weight: bold;
+}
+
+.task button {
+  margin-top: 5px;
+  padding: 3px 8px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    width: 100%;
+  }
+
+  .input-container input[type="owner"],
+  .input-container input[type="text"],
+  .input-container input[type="date"],
+  .input-container button {
+    padding: 8px;
+    margin: 4px;
+    height: auto; 
+    /* Sabit yükseklik kaldırıldı */ */
+  }
+
+  .input-container input[type="owner"],
+  .input-container input[type="text"] {
+    flex: 1 1 200px;
+  }
+
+  .input-container input[type="date"],
+  .input-container button {
+    flex: 1 1 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .board {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .input-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input-container input[type="owner"],
+  .input-container input[type="text"],
+  .input-container input[type="date"],
+  .input-container button {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+  }
+}
+
+
