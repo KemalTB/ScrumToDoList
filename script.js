@@ -69,7 +69,6 @@ function createTaskElement(text, date, owner, status) {
     buttonsContainer.appendChild(deleteBtn);
     buttonsContainer.appendChild(createEmptyButton());
     buttonsContainer.appendChild(createEmptyButton());
-    buttonsContainer.appendChild(createEmptyButton());
     buttonsContainer.appendChild(nextBtn);
   } else if (status === 'in-progress') {
     const backBtn = createButton('Back', () => moveTask(task, 'in-progress', 'todo'));
@@ -79,7 +78,6 @@ function createTaskElement(text, date, owner, status) {
     buttonsContainer.appendChild(backBtn);
     buttonsContainer.appendChild(editBtn);
     buttonsContainer.appendChild(deleteBtn);
-    buttonsContainer.appendChild(createEmptyButton());
     buttonsContainer.appendChild(nextBtn);
   } else if (status === 'check') {
     const backBtn = createButton('Back', () => moveTask(task, 'check', 'in-progress'));
@@ -89,7 +87,6 @@ function createTaskElement(text, date, owner, status) {
     buttonsContainer.appendChild(backBtn);
     buttonsContainer.appendChild(editBtn);
     buttonsContainer.appendChild(deleteBtn);
-    buttonsContainer.appendChild(createEmptyButton());
     buttonsContainer.appendChild(nextBtn);
   } else if (status === 'done') {
     const backBtn = createButton('Back', () => moveTask(task, 'done', 'check'));

@@ -134,9 +134,10 @@ h1 {
 }
 
 .task button {
-  margin-top: 5px;
+  margin-top: 20px;
+  margin-right: 4px;
   padding: 3px 8px;
-  background-color: var(--main-color);
+  background-color: var(--bg-color);
   color: #fff;
   border: none;
   border-radius: 3px;
