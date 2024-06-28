@@ -4,7 +4,6 @@
   box-sizing: border-box;
   font-family: "Comfortaa", sans-serif;
   text-decoration: none;
-  /* scroll-behavior: smooth; */
 }
 
 :root {
@@ -22,7 +21,7 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  overflow: hidden;
+  overflow: auto; /* Kaydırma çubuklarını etkinleştirir */
 }
 
 .container {
@@ -31,13 +30,14 @@ body {
   background-color: var(--second-bg-color);
   padding: 20px;
   box-shadow: 0 0 10px rgba(5, 234, 241, 1);
-  border-radius: 0.5%;
+  border-radius: 10px;
   overflow: auto;
 }
 
 h1 {
   text-align: center;
   color: antiquewhite;
+  margin-bottom: 20px;
 }
 
 .input-container {
@@ -47,23 +47,31 @@ h1 {
   margin-bottom: 20px;
 }
 
-.input-container input[type="owner"],
-.input-container input[type="text"],
-.input-container input[type="date"],
+.input-container input,
 .input-container button {
   padding: 10px;
   margin: 5px;
   border: 3px solid var(--text-color);
+  border-radius: 5px;
   height: 40px; /* Sabit yükseklik */
-  flex: 1 1 auto; /* Esnek genişlik */
+}
+
+.input-container input {
+  flex: 1 1 auto;
+  min-width: 150px;
+}
+
+.input-container button {
+  background-color: var(--main-color);
+  color: #fff;
+  cursor: pointer;
 }
 
 .board {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  overflow: auto; /* Hem yatay hem dikey kaydırma */
+  gap: 10px;
+  justify-content: center;
 }
 
 .column {
@@ -71,16 +79,17 @@ h1 {
   background-color: rgb(247, 244, 244);
   padding: 10px;
   border: 3px solid var(--text-color);
-  margin: 5px;
+  border-radius: 5px;
+  min-width: 250px;
   box-sizing: border-box;
-  border-radius: 0.5%;
 }
 
 .column h2 {
   text-align: center;
   color: antiquewhite;
+  background-color: var(--second-bg-color);
   padding: 10px;
-  border-radius: 0.5%;
+  border-radius: 5px;
 }
 
 #todo-column h2, #todo-list .task {
@@ -127,36 +136,19 @@ h1 {
 .task button {
   margin-top: 5px;
   padding: 3px 8px;
+  background-color: var(--main-color);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 @media (max-width: 1200px) {
   .container {
-    width: 90%;
-  }
-}
-
-@media (max-width: 992px) {
-  .container {
     width: 100%;
   }
 
-  .input-container input[type="owner"],
-  .input-container input[type="text"],
-  .input-container input[type="date"],
-  .input-container button {
-    padding: 8px;
-    margin: 4px;
-    height: auto; 
-    /* Sabit yükseklik kaldırıldı */ */
-  }
-
-  .input-container input[type="owner"],
-  .input-container input[type="text"] {
-    flex: 1 1 200px;
-  }
-
-  .input-container input[type="date"],
-  .input-container button {
+  .input-container input {
     flex: 1 1 100px;
   }
 }
@@ -168,7 +160,7 @@ h1 {
   }
 
   .column {
-    width: 100%;
+    width: 90%;
     margin: 10px 0;
   }
 
@@ -177,14 +169,8 @@ h1 {
     align-items: center;
   }
 
-  .input-container input[type="owner"],
-  .input-container input[type="text"],
-  .input-container input[type="date"],
+  .input-container input,
   .input-container button {
     width: 90%;
-    padding: 10px;
-    margin: 5px 0;
   }
 }
-
-
