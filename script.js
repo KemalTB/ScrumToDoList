@@ -2,6 +2,8 @@ window.onload = function() {
   loadTasks();
 };
 
+let taskIdCounter = 0;
+
 function loadTasks() {
   const todoTasks = JSON.parse(localStorage.getItem('todoTasks')) || [];
   const inProgressTasks = JSON.parse(localStorage.getItem('inProgressTasks')) || [];
@@ -26,6 +28,12 @@ function loadTasks() {
   doneTasks.forEach(task => {
     const taskElement = createTaskElement(task.text, task.date, task.owner, 'done');
     document.getElementById('done-list').appendChild(taskElement);
+  });
+
+  // Liste elemanlarına dragover ve drop olaylarını ekleyin
+  document.querySelectorAll('.task-list').forEach(list => {
+    list.addEventListener('dragover', dragOver);
+    list.addEventListener('drop', drop);
   });
 }
 
@@ -53,6 +61,10 @@ function addTask() {
 function createTaskElement(text, date, owner, status) {
   const task = document.createElement('div');
   task.className = 'task';
+  task.draggable = true;
+  task.id = `task-${taskIdCounter++}`;
+  task.addEventListener('dragstart', dragStart);
+  task.addEventListener('dragend', dragEnd);
 
   const taskDetails = document.createElement('span');
   taskDetails.innerHTML = `<strong>${owner}</strong> - ${text} (${date})`;
@@ -169,7 +181,7 @@ function getPreviousStatus(currentStatus) {
     return 'todo';
   } else if (currentStatus === 'check') {
     return 'in-progress';
-  }else if (currentStatus === 'done') {
+  } else if (currentStatus === 'done') {
     return 'check';
   } else {
     return ''; // Handle other cases if necessary
@@ -235,10 +247,42 @@ function saveTasks() {
 }
 
 function parseTaskText(taskText) {
-  const owner = taskText.split(' - ')[0].replace('<strong>', '').replace('</strong>', '');
+  const owner = taskText.match(/<strong>(.*?)<\/strong>/)[1];
   const text = taskText.split(' - ')[1].split(' (')[0];
-  const date = taskText.match(/\(([^)]+)\)/)[1];
+  const date = taskText.split(' (')[1].split(')')[0];
   return [owner, text, date];
 }
+
+function dragStart(event) {
+  event.dataTransfer.setData('text/plain', event.target.id);
+  setTimeout(() => {
+    event.target.classList.add('hide');
+  }, 0);
+}
+
+function dragEnd(event) {
+  event.target.classList.remove('hide');
+}
+
+function dragOver(event) {
+  event.preventDefault();
+}
+
+function drop(event) {
+  event.preventDefault();
+  const id = event.dataTransfer.getData('text/plain');
+  const draggable = document.getElementById(id);
+  const dropZone = event.target.closest('.task-list');
+
+  if (dropZone) {
+    const newStatus = dropZone.id.replace('-list', '');
+    const [owner, text, date] = parseTaskText(draggable.firstChild.innerHTML);
+    const newTaskElement = createTaskElement(text, date, owner, newStatus);
+    dropZone.appendChild(newTaskElement);
+    draggable.remove();
+    saveTasks();
+  }
+}
+
 
   
