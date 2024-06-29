@@ -173,5 +173,6 @@ h1 {
   .input-container input,
   .input-container button {
     width: 90%;
+    max-height: 30px;
   }
 }
