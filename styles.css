@@ -111,6 +111,10 @@ h1 {
   background-color: #17a017;
   color: #fff;
 }
+#done-list .task{
+  color: black;
+  text-decoration: line-through;
+}
 
 .task-list {
   min-height: 200px;
